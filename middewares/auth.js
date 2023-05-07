@@ -8,7 +8,7 @@ exports.auth = (req, res, next) => {
   try{
     //extract JWT token
     //Pending : other ways to fetch token
-    const token = req.body.token;
+    const token = req.cookie.token || req.body.token || req.header("Authorization").replace("Bearer ", " ");
     
     if(!token){
       return res.status(401).json({
@@ -71,5 +71,5 @@ exports.isAdmin = (req, res, next) => {
       success: false,
       message:"User role can't be verified"
     })
-  }
+  } 
 }

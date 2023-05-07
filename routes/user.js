@@ -28,4 +28,23 @@ router.get("/admin", auth , isAdmin, (req, res) => {
   })
 })
 
+router.get("/getEmail", auth, async (req, res) => {
+  try{
+    const id = req.user.id
+    const user = await User.findOne({id})
+
+    res.status(200).json({
+      success: true,
+      user: user,
+      message:"welcome to email route"
+    })
+  } catch(error){
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      message: "code failed"
+    })
+  }
+})
+
 module.exports = router;

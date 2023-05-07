@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 4000
 
 app.use(express.json()) 
 
+const cookieParser = require("cookie-parser")
+app.use(cookieParser())
+
 const connectWithDB = require("./config/database");
 connectWithDB();
 
